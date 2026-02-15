@@ -51,7 +51,7 @@ public:
             return;
         }
 
-        (*out) << "[BT][" << tickIndex << "] bb(before) " << bb << '\n';
+        (*out) << "[BT][" << tickIndex << "] BlackBoard (before) " << bb << '\n';
     }
 
     void logBlackboardAfter(const BlackBoard &bb) {
@@ -59,7 +59,7 @@ public:
             return;
         }
 
-        (*out) << "[BT][" << tickIndex << "] bb(after)  " << bb << '\n';
+        (*out) << "[BT][" << tickIndex << "] BlackBoard (after)  " << bb << '\n';
     }
 
     void beginChildTick(const INode *parent, const INode *child, const std::size_t index) {

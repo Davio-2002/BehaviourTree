@@ -20,9 +20,10 @@ int main() {
     {
         true,
         true,
-        100,
+        3,
         {0.f, 0.f},
-        {100.f, 100.f},
+        {3.f, 4.f},
+        {10.f, 0.f},
     };
 
 
@@ -56,7 +57,16 @@ int main() {
     const BehaviourTree tree(std::move(root));
 
     BTTracer::instance().setEnabled(true);
-    tree.tick(0.2f);
+
+    std::cout << "\n--- COMBAT TICKS ---\n\n";
+    tree.tick(0.2f, bb);
+    tree.tick(0.2f, bb);
+
+    std::cout << "\n--- PATROL TICKS ---\n\n";
+    bb.targetVisible = false;
+    for (int i = 0; i < 5; ++i) {
+        tree.tick(0.2f, bb);
+    }
 
     return 0;
 }
