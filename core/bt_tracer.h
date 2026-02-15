@@ -1,5 +1,6 @@
 #pragma once
 
+#include <blackboard.h>
 #include <i_node.h>
 #include <iostream>
 #include <ostream>
@@ -43,6 +44,22 @@ public:
 
         (*out) << "[BT][" << tickIndex << "] root " << root->getName()
                << " => " << toString(result) << '\n';
+    }
+
+    void logBlackboardBefore(const BlackBoard &bb) {
+        if (!enabled || !out) {
+            return;
+        }
+
+        (*out) << "[BT][" << tickIndex << "] bb(before) " << bb << '\n';
+    }
+
+    void logBlackboardAfter(const BlackBoard &bb) {
+        if (!enabled || !out) {
+            return;
+        }
+
+        (*out) << "[BT][" << tickIndex << "] bb(after)  " << bb << '\n';
     }
 
     void beginChildTick(const INode *parent, const INode *child, const std::size_t index) {
