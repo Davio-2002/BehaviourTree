@@ -8,6 +8,8 @@ public:
     explicit IsTargetInRange(BlackBoard &contextInfo) : board{contextInfo} {
     }
 
+    [[nodiscard]] std::string_view getName() const override { return "IsTargetInRange"; }
+
     Rule tick(float) override {
         if (board.targetInRange) {
             return Rule::SUCCESS;

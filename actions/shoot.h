@@ -8,6 +8,8 @@ public:
     explicit Shoot(BlackBoard &bb) : blackboard(bb) {
     }
 
+    [[nodiscard]] std::string_view getName() const override { return "Shoot"; }
+
     Rule tick(float) override {
         if (!blackboard.targetVisible) {
             return Rule::FAILURE;

@@ -8,7 +8,7 @@ class Reload : public Action
 public:
     explicit Reload(BlackBoard& bb) : blackboard(bb) {}
 
-    std::string getName() const override { return "Reload"; }
+    [[nodiscard]] std::string_view getName() const override { return "Reload"; }
 
     Rule tick(float) override
     {

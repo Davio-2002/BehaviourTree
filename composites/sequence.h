@@ -1,12 +1,19 @@
 #pragma once
 
+#include <bt_tracer.h>
 #include <composite.h>
 
 class Sequence : public Composite {
 public:
+    [[nodiscard]] std::string_view getName() const override { return "Sequence"; }
+
     Rule tick(const float dT) override {
         while (currentNode < children.size()) {
-            const auto rule = children[currentNode]->tick(dT);
+            auto *child = children[currentNode].get();
+            auto &tracer = BTTracer::instance();
+            tracer.beginChildTick(this, child, currentNode);
+            const auto rule = child->tick(dT);
+            tracer.endChildTick(this, child, currentNode, rule);
 
             if (rule == Rule::SUCCESS) {
                 ++currentNode;

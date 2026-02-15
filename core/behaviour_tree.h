@@ -1,5 +1,6 @@
 #pragma once
 
+#include <bt_tracer.h>
 #include <i_node.h>
 
 class BehaviourTree
@@ -10,7 +11,10 @@ public:
 
     void tick(const float dt) const {
         if (rootNode) {
-            rootNode->tick(dt);
+            auto &tracer = BTTracer::instance();
+            tracer.beginTreeTick(rootNode.get(), dt);
+            const auto result = rootNode->tick(dt);
+            tracer.endTreeTick(rootNode.get(), result);
         }
     }
 

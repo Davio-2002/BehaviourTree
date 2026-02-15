@@ -9,6 +9,8 @@ class Patrol : public Action
 public:
     explicit Patrol(BlackBoard& bb) : blackboard(bb) {}
 
+    [[nodiscard]] std::string_view getName() const override { return "Patrol"; }
+
     Rule tick(const float dt) override
     {
         constexpr float speed = 2.0f;

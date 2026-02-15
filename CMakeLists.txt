@@ -13,6 +13,7 @@ add_executable(untitled2 main.cpp
         leaf/condition.h
         leaf/action.h
         core/behaviour_tree.h
+        core/bt_tracer.h
         core/blackboard.h
         core/bt_types.h
         conditions/IsTargetVisible.h
@@ -22,4 +23,5 @@ add_executable(untitled2 main.cpp
         actions/reload.h
         actions/patrol.h
         helpers/console_colors.h
+        helpers/tree_printer.h
 )
