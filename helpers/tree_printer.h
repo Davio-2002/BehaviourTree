@@ -4,8 +4,6 @@
 #include <composite.h>
 #include <selector.h>
 #include <sequence.h>
-#include <condition.h>
-#include <action.h>
 #include <i_node.h>
 
 #include <iostream>
@@ -35,7 +33,7 @@ inline const char *getNodeColor(const INode *node, const TreePrinterOptions opti
 inline const Composite *asComposite(const INode *node) {
     const auto &type = typeid(*node);
     if (type == typeid(Selector) || type == typeid(Sequence) || type == typeid(Composite)) {
-        return static_cast<const Composite *>(node);
+        return dynamic_cast<const Composite *>(node);
     }
 
     return nullptr;
